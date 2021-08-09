@@ -1,6 +1,7 @@
-import express from 'express';
-import {exec} from 'child_process';
 import os from 'os';
+import {exec} from 'child_process';
+import express from 'express';
+import dotenv from 'dotenv';
 
 const app = express();
 app.use(express.static('public'));
@@ -25,3 +26,6 @@ switch(os.platform()) {
 console.log('OS:', os.platform());
 console.log('express web server started.');
 console.log(url);
+
+const env = dotenv.config();
+console.log(env.parsed);
