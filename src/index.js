@@ -7,8 +7,8 @@ import Utils from './common/utils.js';
 // load configurations
 const env = dotenv.config();
 const props = env.parsed;
-let port = _.get(props, 'port');
-let url = _.get(props, 'url');
+let port = _.get(props, 'sys.port');
+let url = _.get(props, 'sys.url');
 
 // start server
 const app = express();
