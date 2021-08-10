@@ -4,19 +4,18 @@ import _ from 'lodash';
 
 import Utils from './common/utils.js';
 
+// load configurations
+const env = dotenv.config();
+const props = env.parsed;
+let port = _.get(props, 'port');
+let url = _.get(props, 'url');
 
+// start server
 const app = express();
 app.use(express.static('public'));
-
-const port = 3001;
 app.listen(port);
 
-const url = 'http://127.0.0.1:' + port;
-Utils.openUrl(url);
+// open url
+Utils.openUrl(url+":"+port);
 console.log('express web server started.');
-console.log(url);
-
-const env = dotenv.config();
-console.log(env.parsed);
-console.log(_.VERSION);
-console.log(_.chain(env.parsed).pickBy((v,k)=>_.startsWith(k, 'DB_')).value());
+console.log(url+":"+port);
