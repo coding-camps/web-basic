@@ -5,10 +5,10 @@ import _ from 'lodash';
 import Utils from './common/utils.js';
 
 // load configurations
-const env = dotenv.config();
-const props = env.parsed;
-let port = _.get(props, 'sys.port');
-let url = _.get(props, 'sys.url');
+dotenv.config();
+const host = process.env.sys_host;
+const port = process.env.sys_port;
+const url = host + ":" + port;
 
 // start server
 const app = express();
@@ -16,6 +16,5 @@ app.use(express.static('public'));
 app.listen(port);
 
 // open url
-Utils.openUrl(url+":"+port);
-console.log('express web server started.');
-console.log(url+":"+port);
+Utils.openUrl(url);
+console.log('express web server started on:', url);
