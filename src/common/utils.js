@@ -22,5 +22,3 @@ export default class Utils {
         }
     }
 }
-
-// export default utils = new Utils();
