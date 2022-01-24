@@ -3,12 +3,10 @@ import os from 'os';
 
 import express from 'express';
 import dotenv from 'dotenv';
-import _ from 'lodash';
 
 import app from './common/app.js';
 import Utils from './common/utils.js';
 import routers from './common/routers.js';
-import router from './routers/r1.js';
 
 // load configurations
 dotenv.config();
