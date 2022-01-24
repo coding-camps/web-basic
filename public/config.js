@@ -10,8 +10,7 @@ require.config({
         'i18n': 'lib/requirejs-plugin-i18n-2.0.6',
         'domReady': 'lib/requirejs-plugin-domReady-2.0.1',
         '_str': 'lib/underscore.string-3.3.4',
-        'bootstrap': 'lib/bootstrap/bootstrap.bundle',
-        'mymodule': 'testmodule'
+        'bootstrap': 'lib/bootstrap/bootstrap.bundle'
     },
     shim: {
         'jquery': {
