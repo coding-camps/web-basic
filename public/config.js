@@ -10,6 +10,7 @@ require.config({
         'i18n': 'lib/requirejs-plugin-i18n-2.0.6',
         'domReady': 'lib/requirejs-plugin-domReady-2.0.1',
         '_str': 'lib/underscore.string-3.3.4',
+        'bootstrap': 'lib/bootstrap/bootstrap.bundle',
         'mymodule': 'testmodule'
     },
     shim: {
@@ -32,6 +33,10 @@ require.config({
         },
         'i18n': {
             deps: ['require']
+        },
+        'bootstrap' : {
+            deps: ['jquery'],
+            exports: 'boots'
         },
         '_str': {
             deps: ['underscore'],
