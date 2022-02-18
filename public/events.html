@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>events</title>
+        <style type="text/css">
+        #root {
+            margin: 0;
+            padding: 0;
+            border: solid 1px red;
+            width: 500px;
+            height: 500px;
+        }
+        #father, #son , #grade{
+            margin: 1rem;
+            padding: 1rem;
+            background-color: lightcyan;
+            border: solid 5px lightblue;
+            width: 400px;
+            height: 400px;
+        }
+        #son {
+            width: 300px;
+            height: 300px;
+        }
+        #grade {
+            width: 200px;
+            height: 200px;
+        }
+        </style>
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h2>events test</h2>
+        <div id="root">
+            <div id="father">
+                Father
+                <div id="son">
+                    Son
+                    <div id="grade" onClick="clickGrade()">
+                        Grade
+                        </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        function clickGrade() {
+            console.log("click Grade");
+        }
+        var father = document.getElementById("root");
+        var son = document.getElementById("father");
+        var grade = document.getElementById("grade");
+        father.addEventListener("click", function(e){
+            console.log("capture - father");
+        }, true);
+        
+        father.addEventListener("click", function(e){
+            console.log("bubble - father");
+        }, false);
+        
+        son.addEventListener("click", function(e){
+            console.log("bubble - son");
+        }, false);
+        
+        son.addEventListener("click", function(e){
+            console.log("capture - son");
+        }, true);
+        
+        grade.addEventListener("click", function(e){
+            console.log("capture - grade");
+        }, true);
+        
+        grade.addEventListener("click", function(e){
+            console.log("bubble - grade");
+        }, false);
+        
+        </script>
+    </body>
+</html>
