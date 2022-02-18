@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dnd</title>
+        <style type="text/css">
+        #outer {
+            margin: 1rem;
+            padding: 2rem;
+            border: solid 1px blue;
+            width: 800px;
+            height: 400px;
+        }
+        #src {
+            margin: 10px;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
+            border: solid 1px blue;
+            z-index: 100;
+        }
+        #src * {
+            z-index: -1;
+            pointer-events: none;
+        }
+        #target {
+            width: 500px;
+            height: 300px;
+            border: solid 1px blueviolet;
+        }
+        .dragged {
+            background-color: lightgray;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="outer">
+            <div id="target">
+                <h3 id="msg">Drop Here</h3>
+            </div>
+            <div id="src" draggable="true">
+                <img style="width: 50px; height: 50px;" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fv1.qzone.cc%2Favatar%2F201406%2F21%2F08%2F10%2F53a4cd7d07ff8988.jpg%21200x200.jpg"/>
+            </div>
+            <a href="http://www.baidu.com" target="_blank">baidu</a>
+        </div>
+    </body>
+    <script type="text/javascript">
+    var src = document.getElementById("src");
+    var target = document.getElementById("target");
+    
+    target.ondragenter = handleDrag;
+    target.ondragover = handleDrag;
+    function handleDrag(e) {
+        e.preventDefault();
+        e.stopPropagation(); // fit for firefox
+    }
+    target.ondrop = function(e) {
+        console.log(e.dataTransfer);
+        var dndIDx = e.dataTransfer.getData("Text");
+        var newEle = document.getElementById(dndIDx).cloneNode(true);
+        target.innerHTML="";
+        target.appendChild(newEle);
+        e.preventDefault();
+        src.parentNode.removeChild(src);
+    }
+    
+    src.ondragstart = function(e) {
+        e.dataTransfer.setData("Text", e.target.id);
+        e.target.classList.add("dragged");
+    }
+    src.ondragend = function(e) {
+        var elems = document.querySelectorAll("dragged");
+        for(var i=0; i<elems.length; i++ ){
+            elems[i].classList.remove("dragged");
+        }
+    }
+    </script>
+</html>
